@@ -3,7 +3,9 @@ import Layout from '../components/Layout/Layout'
 
 function HomePage() {
   return (
-    <Layout>HomePage</Layout>
+    <Layout>
+      <h1>HomePage</h1>
+    </Layout>
   )
 }
 
