@@ -22,6 +22,7 @@
 
 .nav-link {
   font-weight: 300 !important;
+  color: #4caf50
 }
 
 .active {
@@ -32,6 +33,7 @@
   font-weight: 700;
   font-family: "roboto", sans-serif;
   letter-spacing: 3px;
+  color: #4caf50
 }
 
 .search-form {
@@ -52,18 +54,42 @@
 ==========footer============= */
 
 .footer {
-  color: white;
-  padding: 25px;
-  background: #000000; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #434343,
-    #000000
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #434343, #000000);
+  clear: both;
+  padding-bottom: 30px;
 }
 
-.footer a {
+.subscribe_n {
+  background-color: #4caf50;;
+  text-align: center;
+  padding: 10px 0px ;
+
+  h2 {
+    color: #fff;
+    font-size: 32px;
+    text-transform: uppercase;
+    font-weight: normal;
+
+    @media(max-width: 600px) {
+      font-size: 23px;
+    }
+  }
+
+  p {
+    color: #fff;
+    font-weight: normal;
+    margin: 0 0 10px;
+
+    @media (max-width: 600px) {
+      font-size: 11px;
+    }
+  }
+
+  form {
+    padding-top: 15px;
+  }
+}
+
+/* .footer a {
   text-decoration: none;
   color: white;
   padding: 10px;
@@ -72,7 +98,7 @@
 .footer a:hover {
   color: #ffefba;
   border-bottom: 1px solid #ffefba;
-}
+} */
 /* =================================
 ======== page not found css ======= */
 .pnf {
@@ -153,3 +179,39 @@
   height: 40vh;
 }
 
+.subscribe-text {
+  height: 40px;
+  width: 360px;
+  padding-left: 10px;
+  font-size: 18px;
+
+  @media (max-width: 600px){
+    width: auto;
+    height: 44px;
+  }
+}
+
+.subscribe-btn {
+  background-color: #000;
+  border: 0px;
+  color: #fff;
+  height: 44px;
+  padding: 0px 10px;
+  font-size: 18px;
+  margin-left: -2px;
+  text-transform: uppercase;
+}
+
+.carousel-container {
+  overflow: hidden;
+  height: 500px;
+  margin: 40px 10px 5px 10px;
+}
+.carousel-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.banner {
+  min-width: 100%;
+}

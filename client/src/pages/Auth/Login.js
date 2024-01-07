@@ -39,15 +39,14 @@ const Login = () => {
     }
   };
   return (
-    <Layout title="Register - Ecommer App">
-      <div className="form-container " style={{ minHeight: "90vh" }}>
+    <Layout title="Login - Ecommer App">
+      <div className="form-container ">
         <form onSubmit={handleSubmit}>
-          <h4 className="title">LOGIN FORM</h4>
+          <h4 className="title">Current User</h4>
 
           <div className="mb-3">
             <input
               type="email"
-              autoFocus
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="form-control"
@@ -67,21 +66,12 @@ const Login = () => {
               required
             />
           </div>
-          <div className="mb-3">
-            <button
-              type="button"
-              className="btn forgot-btn"
-              onClick={() => {
-                navigate("/forgot-password");
-              }}
-            >
-              Forgot Password
-            </button>
-          </div>
 
           <button type="submit" className="btn btn-primary">
             LOGIN
           </button>
+
+          <a href="" target="_blank">forgot password</a>
         </form>
       </div>
     </Layout>

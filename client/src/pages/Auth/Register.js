@@ -43,7 +43,7 @@ const Register = () => {
     <Layout title="Register - Ecommer App">
       <div className="form-container">
         <form onSubmit={handleSubmit}>
-          <h4 className="title">REGISTER FORM</h4>
+          <h4 className="title">New User</h4>
           <div className="mb-3">
             <input
               type="text"
@@ -53,7 +53,6 @@ const Register = () => {
               id="exampleInputEmail1"
               placeholder="Enter Your First Name"
               required
-              autoFocus
             />
           </div>
           <div className="mb-3">
@@ -64,7 +63,6 @@ const Register = () => {
               className="form-control"
               id="exampleInputEmail1"
               placeholder="Enter Your Last Name"
-              autoFocus
             />
           </div>
           <div className="mb-3">
@@ -86,39 +84,6 @@ const Register = () => {
               className="form-control"
               id="exampleInputPassword1"
               placeholder="Enter Your Password"
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="text"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="form-control"
-              id="exampleInputEmail1"
-              placeholder="Enter Your Phone"
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              className="form-control"
-              id="exampleInputEmail1"
-              placeholder="Enter Your Address"
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="text"
-              value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
-              className="form-control"
-              id="exampleInputEmail1"
-              placeholder="What is Your Favorite sports"
               required
             />
           </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { StyledForm, StyledInput, StyledButton, StyledAlert, StyledLabel, Heading, Subheading, StyledInputHalf } from './FormComponents.js';
 
 function ContactForm() {
