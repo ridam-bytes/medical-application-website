@@ -12,9 +12,14 @@ function ContactForm() {
 
   const [enabled, setEnabled] = React.useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     buttonEnabled(e.target.name, e.target.mail, e.target.message);
+    await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`, {
+      name,
+      mail,
+      message
+    })
   }
 
   const nameEntered = (e) => {
