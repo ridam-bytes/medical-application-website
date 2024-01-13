@@ -1,13 +1,43 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 const Footer = () => {
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="footer">
-      <h1 className="text-center">All Right Reserved &copy; Amdisco</h1>
-      <p className="text-center mt-3">
-        <Link to="/about">About</Link>|<Link to="/contact">Contact</Link>|
-        <Link to="/policy">Privacy Policy</Link>
-      </p>
+      <div className="subscribe_n">
+        <h2>KEEP IN TOUCH WITH AMSCO</h2>
+        <p>
+          Subscribe today to stay on top of everything at AMSCO Medical.
+        </p>
+        <p>
+        Including seasonal special, promo deals, blog updates and much more!
+        </p>
+        <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="subscribe-text"
+              placeholder="Email Address"
+              required
+            />
+          <button type="submit" className="subscribe-btn">
+            Subscribe
+          </button>
+        </form>
+      </div>
+      <div>
+          <span>About</span>
+          <span>About</span>
+          <span>About</span>
+          <span>About</span>
+          <span>About</span>
+          <span>About</span>
+      </div>
     </div>
   );
 };
