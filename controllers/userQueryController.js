@@ -22,7 +22,7 @@ export const addUserQuery = async(req, res) => {
 
         res.status(201).send({
             success: true,
-            message: "User query successfully submitted",
+            message: "Your query is successfully submitted",
             userQuery
         });
 

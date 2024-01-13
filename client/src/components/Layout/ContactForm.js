@@ -1,6 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import { StyledForm, StyledInput, StyledButton, StyledAlert, StyledLabel, Heading, Subheading, StyledInputHalf } from './FormComponents.js';
+import axios from 'axios';
+import toast from "react-hot-toast";
 
 function ContactForm() {
   const [name, setName] = React.useState('');
@@ -15,31 +16,43 @@ function ContactForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    buttonEnabled(e.target.name, e.target.mail, e.target.message);
-    await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`, {
+    buttonEnabled(name, mail, message);
+    const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/userQuery/addUserQuery`, {
       name,
       mail,
       message
-    })
+    });
+
+    toast.success(res.data.message);
+
+    return Promise.all([
+      setName(""),
+      setMail(""),
+      setMessage("")
+    ]);
+
   }
 
   const nameEntered = (e) => {
     setName(e.target.value);
-    buttonEnabled(name, mail, message);
+    buttonEnabled(e.target.value, mail, message);
   }
 
   const mailEntered = (e) => {
     setMail(e.target.value);
-    buttonEnabled(name, mail, message);
+    buttonEnabled(name, e.target.value, message);
   }
 
   const messageEntered = (e) => {
     setMessage(e.target.value);
-    buttonEnabled(name, mail, message);
+    buttonEnabled(name, mail, e.target.value);
   }
 
   const buttonEnabled = (name, mail, message) => {
-    if (isMailValid(mail) && isNameValid(name) && isMessageValid(message)) {
+    const isMailValidRes = isMailValid(mail);
+    const isNameValidRes = isNameValid(name)
+    const isMessageValidRes = isMessageValid(message);
+    if (isMailValidRes && isNameValidRes && isMessageValidRes) {
       setEnabled(true);
     } else {
       setEnabled(false);
@@ -55,12 +68,12 @@ function ContactForm() {
       setMailInvalid(true);
       return false;
     }
-      setMailInvalid(false);
+    setMailInvalid(false);
     return true;
   }
 
   const isMessageValid = (message) => {
-    if(message.length === 0){
+    if (message.length === 0) {
       setMessageInvalid(true);
       return false;
     }
@@ -69,7 +82,7 @@ function ContactForm() {
   }
 
   const isNameValid = (name) => {
-    if(name.length === 0){
+    if (name.length === 0) {
       setNameInvalid(true);
       return false;
     }
@@ -83,19 +96,20 @@ function ContactForm() {
     <StyledForm onSubmit={handleSubmit}>
       <Heading>Contact Us</Heading>
       <Subheading>Feel free to reach out to us!</Subheading>
-      <StyledLabel>Name:</StyledLabel>
-      <StyledInputHalf type="text" value={name} onChange={e => nameEntered(e)} />
+
+      <StyledLabel invalid={nameInvalid}>Name:</StyledLabel>
+      <StyledInputHalf type="text" value={name} onChange={(e) => nameEntered(e)} />
       {nameInvalid && <StyledAlert>Name is invalid.</StyledAlert>}
-      
+
       <StyledLabel invalid={mailInvalid}>Email:</StyledLabel>
       <StyledInputHalf type="text" value={mail} onChange={(e) => mailEntered(e)} />
       {mailInvalid && <StyledAlert>Email is invalid.</StyledAlert>}
 
-      <StyledLabel>Message:</StyledLabel>
-      <StyledInput type="text" value={message} onChange={e => messageEntered(e)} />
+      <StyledLabel invalid={messageInvalid}>Message:</StyledLabel>
+      <StyledInput type="text" value={message} onChange={(e) => messageEntered(e)} />
       {messageInvalid && <StyledAlert>Message is invalid.</StyledAlert>}
 
-      <StyledButton type="submit" disabled={!enabled}>Login</StyledButton>
+      <StyledButton type="submit" disabled={!enabled}>Submit</StyledButton>
     </StyledForm>
   )
 }
