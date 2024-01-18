@@ -7,7 +7,7 @@ import "swiper/css/autoplay";
 
 export default function Banner() {
   return (
-    <section className="lg:mt-0 mt-[70px] home-slider">
+    <section className="lg:mt-0 banner mt-[70px] home-slider">
       <Swiper
         spaceBetween={8}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
@@ -18,7 +18,7 @@ export default function Banner() {
           prevEl: ".carousel-prev-btn",
           nextEl: ".carousel-next-btn",
         }}
-        className="md:h-[450px] lg:h-screen relative"
+        className="min-h-[400px] banner-height relative"
       >
         <SwiperSlide className="h-full bg-black  w-full">
           <Slide

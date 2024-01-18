@@ -101,13 +101,19 @@
 
 /*  =================================== */
 
-.swiper-pagination-bullet {
+.banner .swiper-pagination-bullet {
   background-color: white !important;
 }
-.swiper-pagination-bullet-active {
+.banner .swiper-pagination-bullet-active {
   background-color: #4caf50 !important;
 }
 
+.testimonial-wrapper  .swiper-pagination-bullet {
+  background-color:  gray !important;
+}
+ .swiper-pagination-bullet-active {
+  background-color: #4caf50 !important;
+}
 .master-btn {
   background-image: linear-gradient(to bottom, #247e27 , #4caf50 );
 }
@@ -119,10 +125,12 @@
 
 .form-section-wrapper  {
   background-image: radial-gradient(90% 80% at top right, #fbf6f6 ,  #fff , #ececec , #fff);
-
-
 }
 
 .swiper-slide-bg {
   background-image: linear-gradient(to bottom , #1f1f1f , #000);
+}
+
+.banner-height {
+  height:calc(100vh - 100px)
 }

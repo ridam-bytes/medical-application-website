@@ -1,6 +1,27 @@
 import React, { useState } from "react";
 import { TextAnchor, Anchor } from "../Atoms/anchors";
 
+const NavigationLink = ({ href, text }) => (
+  <li>
+    <TextAnchor
+      color="light"
+      size="small"
+      className="block whitespace-nowrap"
+      href={href}
+      text={text}
+    />
+  </li>
+);
+
+// diagnostic testing
+// equipment
+// gloves.
+// laboratory
+// optometry
+// orthopedic
+// pharmaceutical
+// physician
+// surgical supplies
 export default function Footer() {
   return (
     <footer className="text-white border-t-gray border-t border-opacity-10 bg-gradient-to-tr from-[#151515] from-0% via-20% to-black to-100% blade-top-padding blade-bottom-padding">
@@ -53,84 +74,53 @@ export default function Footer() {
                 Categories
               </li>
 
-              <li>
-                <TextAnchor
-                  color="light"
-                  size="small"
-                  className="block whitespace-nowrap"
-                  href="/category/blood-pressure"
-                  text="Blood pressure"
-                />
-              </li>
-              <li>
-                <TextAnchor
-                  color="light"
-                  size="small"
-                  className="block whitespace-nowrap"
-                  href="/category/blood-pressure"
-                  text="Old Age"
-                />
-              </li>
-              <li>
-                <TextAnchor
-                  color="light"
-                  size="small"
-                  className="block whitespace-nowrap"
-                  href="/category/blood-pressure"
-                  text="Hygiene"
-                />
-              </li>
-              <li>
-                <TextAnchor
-                  color="light"
-                  size="small"
-                  className="block whitespace-nowrap"
-                  href="/category/blood-pressure"
-                  text="Blood pressure"
-                />
-              </li>
+              <NavigationLink
+                href="/category/diagnostic-testing"
+                text="Diagnostic Testing"
+              />
+
+              <NavigationLink href="/category/equipment" text="Equipment" />
+
+              <NavigationLink href="/category/gloves" text="Gloves" />
+
+              <NavigationLink href="/category/laboratory" text="Laboratory" />
+
+              <NavigationLink href="/category/optometry" text="Optometry" />
+
+              <NavigationLink href="/category/orthopedic" text="Orthopedic" />
+
+              <NavigationLink
+                href="/category/pharmaceutical"
+                text="Pharmaceutical"
+              />
+
+              <NavigationLink href="/category/physician" text="Physician" />
+
+              <NavigationLink
+                href="/category/surgical-supplies"
+                text="Surgical Supplies"
+              />
             </ul>
 
-            <ul className=" grid gap-2 md:gap-3 text-white list-none">
+            <ul className=" flex flex-col gap-2 md:gap-3 text-white list-none">
               <li className="xl:text-base  text-sm md:text-base  font-medium uppercase">
-                Categories
+                Navigation
               </li>
 
               <li>
-                <TextAnchor
-                  color="light"
-                  size="small"
-                  className="block whitespace-nowrap"
-                  href="/category/blood-pressure"
-                  text="Blood pressure"
+                <NavigationLink
+                  href="/terms-and-conditions"
+                  text="Terms & Conditions"
                 />
               </li>
               <li>
-                <TextAnchor
-                  color="light"
-                  size="small"
-                  className="block whitespace-nowrap"
-                  href="/category/blood-pressure"
-                  text="Old Age"
-                />
+                <NavigationLink href="/privacy-policy" text="Privacy Policy" />
               </li>
               <li>
-                <TextAnchor
-                  color="light"
-                  size="small"
-                  className="block whitespace-nowrap"
-                  href="/category/blood-pressure"
-                  text="Hygiene"
-                />
+                <NavigationLink href="/privacy-policy" text="Shipping Policy" />
               </li>
               <li>
-                <TextAnchor
-                  color="light"
-                  size="small"
-                  className="block whitespace-nowrap"
-                  href="/category/blood-pressure"
-                  text="Blood pressure"
-                />
+                <NavigationLink href="/privacy-policy" text="Return Policy" />
               </li>
             </ul>
           </div>
@@ -186,6 +176,55 @@ export default function Footer() {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z" />
+              </svg>
+            </a>
+            <a
+              href="https://example.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg
+                width="24px"
+                height="24px"
+                viewBox="0 -2 20 20"
+                version="1.1"
+              >
+                <defs></defs>
+                <g
+                  id="Page-1"
+                  stroke="none"
+                  stroke-width="1"
+                  fill="white"
+                  fill-rule="evenodd"
+                >
+                  <g
+                    id="Dribbble-Light-Preview"
+                    transform="translate(-60.000000, -7521.000000)"
+                    fill="#fff"
+                  >
+                    <g id="icons" transform="translate(56.000000, 160.000000)">
+                      <path
+                        d="M10.29,7377 C17.837,7377 21.965,7370.84365 21.965,7365.50546 C21.965,7365.33021 21.965,7365.15595 21.953,7364.98267 C22.756,7364.41163 23.449,7363.70276 24,7362.8915 C23.252,7363.21837 22.457,7363.433 21.644,7363.52751 C22.5,7363.02244 23.141,7362.2289 23.448,7361.2926 C22.642,7361.76321 21.761,7362.095 20.842,7362.27321 C19.288,7360.64674 16.689,7360.56798 15.036,7362.09796 C13.971,7363.08447 13.518,7364.55538 13.849,7365.95835 C10.55,7365.79492 7.476,7364.261 5.392,7361.73762 C4.303,7363.58363 4.86,7365.94457 6.663,7367.12996 C6.01,7367.11125 5.371,7366.93797 4.8,7366.62489 L4.8,7366.67608 C4.801,7368.5989 6.178,7370.2549 8.092,7370.63591 C7.488,7370.79836 6.854,7370.82199 6.24,7370.70483 C6.777,7372.35099 8.318,7373.47829 10.073,7373.51078 C8.62,7374.63513 6.825,7375.24554 4.977,7375.24358 C4.651,7375.24259 4.325,7375.22388 4,7375.18549 C5.877,7376.37088 8.06,7377 10.29,7376.99705"
+                        id="twitter-[#154]"
+                      ></path>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </a>
+            <a
+              href="https://example.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg fill="#fff" height="24px" width="24px" viewBox="0 0 220 220">
+                <path
+                  d="M110,0C49.249,0,0,49.247,0,110s49.249,110,110,110s110-49.247,110-110S170.75,0,110,0z M137.625,110
+	c0,27.604-22.457,50.061-50.061,50.061c-27.604,0-50.061-22.457-50.061-50.061S59.96,59.939,87.564,59.939
+	c11.137,0,21.688,3.585,30.512,10.368l-11.623,15.119c-5.461-4.198-11.993-6.417-18.889-6.417c-17.088,0-30.99,13.902-30.99,30.99
+	s13.902,30.99,30.99,30.99c13.763,0,25.459-9.018,29.49-21.455h-29.49v-19.07h50.061V110z M190.33,116.234h-14.34v14.342h-12.47
+	v-14.342h-14.334v-12.469h14.334V89.424h12.47v14.342h14.34V116.234z"
+                />
               </svg>
             </a>
           </div>
