@@ -1,54 +1,110 @@
-import React from 'react';
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay, Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
 
-let currentIndex = 0;
-let carouselWrapper;
-let banner_count = 2;
-
-function updateCarousel() {
-  const newTransformValue = -currentIndex * 100 + '%';
-  if (carouselWrapper) {
-    carouselWrapper.style.transform = `translateX(${newTransformValue})`;
-  }
-}
-
-function nextSlide() {
-  currentIndex = (currentIndex + 1) % banner_count;
-  updateCarousel();
-}
-
-const Carousel = () => {
-  updateCarousel();
-  setInterval(nextSlide, 4000);
+export default function Banner() {
   return (
-    <div class="carousel-container">
-      <div class="carousel-wrapper">
-        <div class="banner">
-        <img
-            src="/images/contactus.jpeg"
-            alt="contactus"
-            style={{ width: "100%", height: "500px" }}
+    <section className="lg:mt-0 mt-[70px] home-slider">
+      <Swiper
+        spaceBetween={8}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        loop
+        modules={[Autoplay, Pagination, Navigation]}
+        pagination={true}
+        navigation={{
+          prevEl: ".carousel-prev-btn",
+          nextEl: ".carousel-next-btn",
+        }}
+        className="md:h-[450px] lg:h-screen relative"
+      >
+        <SwiperSlide className="h-full bg-black  w-full">
+          <Slide
+            mobileImage="https://images.unsplash.com/photo-1504439468489-c8920d796a29?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            desktopImage="https://images.unsplash.com/photo-1504439468489-c8920d796a29?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="slider image alt tag"
           />
-        </div>
-        <div class="banner">
-        <img
-            src="/images/contactus.jpeg"
-            alt="contactus"
-            style={{ width: "100%", height: "500px"}}
+        </SwiperSlide>
+        <SwiperSlide>
+          <Slide
+            mobileImage="https://images.unsplash.com/photo-1504439468489-c8920d796a29?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            desktopImage="https://images.unsplash.com/photo-1504439468489-c8920d796a29?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="slider image alt tag"
           />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Slide
+            mobileImage="https://images.unsplash.com/photo-1504439468489-c8920d796a29?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            desktopImage="https://images.unsplash.com/photo-1504439468489-c8920d796a29?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="slider image alt tag"
+          />
+        </SwiperSlide>
+        <div className="absolute left-0 top-0 right-0 z-10 bottom-0  w-14 md:w-20 lg:w-24 grid place-content-center">
+          <button
+            type="button"
+            class="place-content-center cursor-pointer h-8 md:h-10 lg:h-12 w-8 md:w-10 lg:w-12 rounded-full  hover:bg-green hover:bg-opacity-30 backdrop-blur-sm border-[1px] carousel-prev-btn  border-solid border-white  border-opacity-10 stroke-white hover:stroke-green focus-visible:bg-green focus-visible:stroke-green outline-none transition-all grid "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="3"
+              stroke="inherit"
+              class="w-4 md:w-6 rotate-180"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              ></path>
+            </svg>
+          </button>
         </div>
-      </div>
-      {/* <div class="dots-container">
-          <span
-            class={`dot ${index === currentIndex ? 'selected' : 'not-selected'}`}
-            on:click={() => {
-              currentIndex = index;
-              stopAutoSlide();
-              updateCarousel();
-            }}
-            ></span>
-      </div> */}
+        <div className="absolute left-auto top-0 right-0 z-10 bottom-0  w-14 md:w-20 lg:w-24 grid place-content-center">
+          <button
+            type="button"
+            class="place-content-center cursor-pointer h-8 md:h-10 lg:h-12 w-8 md:w-10 lg:w-12 rounded-full  hover:bg-green hover:bg-opacity-30 backdrop-blur-sm border-[1px] border-solid border-white  border-opacity-10 stroke-white hover:stroke-green carousel-next-btn focus-visible:bg-green focus-visible:stroke-green outline-none transition-all grid "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="3"
+              stroke="inherit"
+              class="w-4 md:w-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </Swiper>
+    </section>
+  );
+}
+
+function Slide({ desktopImage, mobileImage, alt }) {
+  const breakPoint = 768;
+
+  return (
+    <div className="h-full w-full swiper-slide-bg">
+      <picture className="h-full w-full ">
+        <source
+          media={`(max-width: ${breakPoint}px)`}
+          srcSet={mobileImage}
+          className="h-full objec w-full"
+        />
+        <img
+          className="h-full object-cover  w-full"
+          src={desktopImage}
+          alt={alt}
+        />
+      </picture>
     </div>
   );
-};
-
-export default Carousel;
+}

@@ -1,117 +1,153 @@
-import React from 'react';
-import { StyledForm, StyledInput, StyledButton, StyledAlert, StyledLabel, Heading, Subheading, StyledInputHalf } from './FormComponents.js';
-import axios from 'axios';
-import toast from "react-hot-toast";
+import { Formik } from "formik";
+import React, { useState } from "react";
 
-function ContactForm() {
-  const [name, setName] = React.useState('');
-  const [mail, setMail] = React.useState('');
-  const [message, setMessage] = React.useState('');
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-  const [mailInvalid, setMailInvalid] = React.useState(false);
-  const [messageInvalid, setMessageInvalid] = React.useState(false);
-  const [nameInvalid, setNameInvalid] = React.useState(false);
+export default function Contact() {
+  const [isLoading, toggleLoading] = useState(false);
+  const initalFormState = {
+    email: "",
+    name: "",
+    message: "",
+  };
 
-  const [enabled, setEnabled] = React.useState(false);
+  const submitHandler = async (values, { resetForm }) => {
+    toggleLoading(true);
+    try {
+      // const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/userQuery/addUserQuery`, {
+      //   name,
+      //   mail,
+      //   message
+      // });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    buttonEnabled(name, mail, message);
-    const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/userQuery/addUserQuery`, {
-      name,
-      mail,
-      message
-    });
-
-    toast.success(res.data.message);
-
-    return Promise.all([
-      setName(""),
-      setMail(""),
-      setMessage("")
-    ]);
-
-  }
-
-  const nameEntered = (e) => {
-    setName(e.target.value);
-    buttonEnabled(e.target.value, mail, message);
-  }
-
-  const mailEntered = (e) => {
-    setMail(e.target.value);
-    buttonEnabled(name, e.target.value, message);
-  }
-
-  const messageEntered = (e) => {
-    setMessage(e.target.value);
-    buttonEnabled(name, mail, e.target.value);
-  }
-
-  const buttonEnabled = (name, mail, message) => {
-    const isMailValidRes = isMailValid(mail);
-    const isNameValidRes = isNameValid(name)
-    const isMessageValidRes = isMessageValid(message);
-    if (isMailValidRes && isNameValidRes && isMessageValidRes) {
-      setEnabled(true);
-    } else {
-      setEnabled(false);
+      console.log("handle form submission  here.");
+      toast.success("Form Submitted.");
+    } catch (err) {
+      toast.error("Error! Please Try Again.");
+      console.log(err);
     }
-  }
+    toggleLoading(false);
+    resetForm();
+  };
 
-  const isMailValid = (mail) => {
-    if (mail.length === 0) {
-      setMailInvalid(true);
-      return false
+  const validator = (values) => {
+    const errors = {};
+    if (!values.email) {
+      errors.email = "Email Is Required";
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+      errors.email = "Invalid email address";
     }
-    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(mail)) {
-      setMailInvalid(true);
-      return false;
+
+    if (values.name === "") {
+      errors.name = "Name is required ";
     }
-    setMailInvalid(false);
-    return true;
-  }
 
-  const isMessageValid = (message) => {
-    if (message.length === 0) {
-      setMessageInvalid(true);
-      return false;
+    if (!values.message) {
+      errors.message = "This field is required.";
     }
-    setMessageInvalid(false);
-    return true;
-  }
-
-  const isNameValid = (name) => {
-    if (name.length === 0) {
-      setNameInvalid(true);
-      return false;
-    }
-    setNameInvalid(false)
-    return true;
-  }
-
-
+    return errors;
+  };
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      <Heading>Contact Us</Heading>
-      <Subheading>Feel free to reach out to us!</Subheading>
+    <div className="blade-bottom-padding-lg  px-2 form-section-wrapper">
+      <ToastContainer />
+      <div className="grid blade-bottom-padding-sm blade-top-padding-lg text-center w-container">
+        <h2 className="font-semibold md:mb-2 pb-2 leading-normal from-neutral-400 bg-gradient-to-br bg-clip-text text-transparent to-neutral-800 text-3xl md:text-4xl lg:text-5xl">
+          Drop us a message
+        </h2>
+        <span className="font-medium leading-snug text-base md:text-lg">
+          Please feel free to drop us a message! <br /> We will connect with you
+          soon.
+        </span>
+      </div>
 
-      <StyledLabel invalid={nameInvalid}>Name:</StyledLabel>
-      <StyledInputHalf type="text" value={name} onChange={(e) => nameEntered(e)} />
-      {nameInvalid && <StyledAlert>Name is invalid.</StyledAlert>}
+      <Formik
+        initialValues={initalFormState}
+        validate={(values) => validator(values)}
+        onSubmit={(values, actions) => submitHandler(values, actions)}
+        validateOnChange={false}
+      >
+        {({ values, errors, handleChange, handleSubmit, setFieldValue }) => (
+          <form
+            onSubmit={handleSubmit}
+            noValidate
+            className="max-w-2xl mt-2 md:mt-4 blade-bottom-margin-sm bg-white  mx-auto md:w-11/12 px-2 pt-10 pb-8 border-[1px] border-solid border-neutral-200 rounded-xl"
+          >
+            <div className="md:grid-cols-2 gap-3 grid-cols-1 grid md:gap-6 md:px-4">
+              <div className="  flex flex-col ">
+                <label className="mb-1 text-sm font-medium lg:text-base text-neutral-700">
+                  Full Name*
+                </label>
+                <input
+                  size="1"
+                  name="name"
+                  type="text"
+                  className={`${
+                    errors.name ? "!border-red-600" : "border-neutral-800"
+                  }  placeholder:text-neutral-500 placeholder:font-normal tracking-wide px-3 py-2.5 text-sm lg:text-base text-slate-700  w-full border border-solid rounded-md transition-all ease-in-out duration-150 focus:border-green focus-visible:text-neutral-900 outline-none focus-visible:outline-none`}
+                  placeholder="Enter your full name"
+                  value={values.name}
+                  onChange={handleChange}
+                />
+                {errors.name && (
+                  <p className="text-[12px] md:text-sm font-medium text-red-600">
+                    {errors.name}
+                  </p>
+                )}
+              </div>
 
-      <StyledLabel invalid={mailInvalid}>Email:</StyledLabel>
-      <StyledInputHalf type="text" value={mail} onChange={(e) => mailEntered(e)} />
-      {mailInvalid && <StyledAlert>Email is invalid.</StyledAlert>}
+              <div className=" flex flex-col ">
+                <label className="mb-1 text-sm font-medium lg:text-base text-neutral-700">
+                  Email*
+                </label>
+                <input
+                  size="1"
+                  name="email"
+                  type="email"
+                  inputMode="email"
+                  className={`${
+                    errors.email ? "!border-red-600" : "border-neutral-800"
+                  }  placeholder:text-neutral-500 placeholder:font-normal tracking-wide px-3 py-2.5 text-sm lg:text-base text-slate-700  w-full border border-solid rounded-md transition-all ease-in-out duration-150 focus:border-green focus-visible:text-neutral-900 outline-none focus-visible:outline-none`}
+                  placeholder="Enter your email address"
+                  value={values.email}
+                  onChange={handleChange}
+                />
+                {errors.email && (
+                  <p className="text-[12px] md:text-sm font-medium text-red-600">
+                    {errors.email}
+                  </p>
+                )}
+              </div>
+            </div>
 
-      <StyledLabel invalid={messageInvalid}>Message:</StyledLabel>
-      <StyledInput type="text" value={message} onChange={(e) => messageEntered(e)} />
-      {messageInvalid && <StyledAlert>Message is invalid.</StyledAlert>}
+            <div className="flex-1 flex flex-col flex-nowrap mt-3 md:mt-5 md:px-4  ">
+              <label className="mb-1 text-sm font-medium lg:text-base text-neutral-700">
+                Message
+              </label>
+              <textarea
+                size="1"
+                rows="5"
+                name="message"
+                type="text"
+                className="placeholder:text-neutral-500 placeholder:font-normal tracking-wide px-3 py-2.5 text-sm lg:text-base text-slate-700  w-full border border-solid rounded-md transition-all ease-in-out duration-150 focus:border-green focus-visible:text-neutral-900 outline-none focus-visible:outline-none"
+                placeholder="Do you have a message for us?"
+                value={values.message}
+                onChange={handleChange}
+              ></textarea>
+            </div>
 
-      <StyledButton type="submit" disabled={!enabled}>Submit</StyledButton>
-    </StyledForm>
-  )
+            <div className="w-full flex justify-end mt-4 md:mt-6 lg:mt-8  md:px-4">
+              <button
+                type="submit"
+                class="master-btn text-white py-2 px-8 xl:px-10 xl:py-[10px] text-base md:text-lg font-medium rounded-md focus-visible:outline-green outline-transparent hover:outline-green transition-all duration-300 ease-default outline outline-[2px] outline-offset-2"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        )}
+      </Formik>
+    </div>
+  );
 }
-
-export default ContactForm;
