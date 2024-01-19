@@ -1,10 +1,36 @@
 import React, { useState } from "react";
+import axios from "axios";
+
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function SubFooter() {
   const [email, setEmail] = useState("");
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+  const [isLoading, setLoading] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_API}/api/v1/subscribe`,
+        {
+          email,
+        }
+      );
+      setLoading(false);
+      setEmail("");
+      if (res.data.success) toast.success(res.data.message);
+      else {
+        toast.error(res.data.message);
+      }
+    } catch {
+      setLoading(false);
+      setEmail("");
+      toast.error("failed to submit the form.");
+    }
   };
+
   return (
     <section className="blade-top-padding-sm blade-bottom-padding-sm subfooter-wrapper">
       <div className="blade-top-padding place-items-center blade-bottom-padding grid place-content-center text-center">
@@ -31,13 +57,15 @@ export default function SubFooter() {
             className={` bg-green bg-opacity-5 placeholder:text-base placeholder:text-neutral-800 placeholder:font-normal tracking-wide px-3 py-2.5 text-sm lg:text-base text-neutral-800  w-full border border-solid rounded-md transition-all  !border-neutral-400 ease-in-out duration-150s focus-visible:text-neutral-900 outline-none focus-visible:outline-none`}
             placeholder="Enter your email address"
             value={email}
-            onChange={handleEmailChange}
+            onChange={(event) => setEmail(event.target.value)}
           />
           <button
-            type="submit"
-            class="master-btn text-white py-2 px-4 xl:px-7 text-base md:text-base font-medium rounded-md focus-visible:outline-green outline-transparent hover:outline-green transition-all duration-300 ease-default outline outline-[2px] outline-offset-2"
+            disabled={isLoading}
+            onClick={handleSubmit}
+            type="button"
+            class="master-btn disabled:opacity-50 text-white py-2 px-4 xl:px-7 text-base md:text-base font-medium rounded-md focus-visible:outline-green outline-transparent hover:outline-green transition-all duration-300 ease-default outline outline-[2px] outline-offset-2"
           >
-            Subscribe
+            {isLoading ? "Loading..." : "Subscribe"}
           </button>
         </div>
       </div>
