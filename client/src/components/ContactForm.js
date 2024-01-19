@@ -1,5 +1,6 @@
 import { Formik } from "formik";
 import React, { useState } from "react";
+import axios from "axios";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,24 +9,21 @@ export default function Contact() {
   const [isLoading, toggleLoading] = useState(false);
   const initalFormState = {
     email: "",
-    name: "",
+    fullName: "",
     message: "",
   };
 
   const submitHandler = async (values, { resetForm }) => {
     toggleLoading(true);
+    toast.info("Submitting the form. Please wait.");
     try {
-      // const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/userQuery/addUserQuery`, {
-      //   name,
-      //   mail,
-      //   message
-      // });
-
-      console.log("handle form submission  here.");
-      toast.success("Form Submitted.");
+      const res = await axios.post(
+        `${process.env.REACT_APP_API}/api/v1/userQuery/addUserQuery`,
+        { name: values.fullName, email: values.email, message: values.message }
+      );
+      toast.success(res.data.message);
     } catch (err) {
       toast.error("Error! Please Try Again.");
-      console.log(err);
     }
     toggleLoading(false);
     resetForm();
@@ -39,8 +37,8 @@ export default function Contact() {
       errors.email = "Invalid email address";
     }
 
-    if (values.name === "") {
-      errors.name = "Name is required ";
+    if (values.fullName === "") {
+      errors.fullName = "Name is required ";
     }
 
     if (!values.message) {
@@ -81,18 +79,18 @@ export default function Contact() {
                 </label>
                 <input
                   size="1"
-                  name="name"
+                  name="fullName"
                   type="text"
                   className={`${
-                    errors.name ? "!border-red-600" : "border-neutral-800"
+                    errors.fullName ? "!border-red-600" : "border-neutral-800"
                   }  placeholder:text-neutral-500 placeholder:font-normal tracking-wide px-3 py-2.5 text-sm lg:text-base text-slate-700  w-full border border-solid rounded-md transition-all ease-in-out duration-150 focus:border-green focus-visible:text-neutral-900 outline-none focus-visible:outline-none`}
                   placeholder="Enter your full name"
-                  value={values.name}
+                  value={values.fullName}
                   onChange={handleChange}
                 />
-                {errors.name && (
+                {errors.fullName && (
                   <p className="text-[12px] md:text-sm font-medium text-red-600">
-                    {errors.name}
+                    {errors.fullName}
                   </p>
                 )}
               </div>
@@ -139,10 +137,11 @@ export default function Contact() {
 
             <div className="w-full flex justify-end mt-4 md:mt-6 lg:mt-8  md:px-4">
               <button
+                disabled={isLoading}
                 type="submit"
-                class="master-btn text-white py-2 px-8 xl:px-10 xl:py-[10px] text-base md:text-lg font-medium rounded-md focus-visible:outline-green outline-transparent hover:outline-green transition-all duration-300 ease-default outline outline-[2px] outline-offset-2"
+                class="master-btn disabled:opacity-50 text-white py-2 px-8 xl:px-10 xl:py-[10px] text-base md:text-lg font-medium rounded-md focus-visible:outline-green outline-transparent hover:outline-green transition-all duration-300 ease-default outline outline-[2px] outline-offset-2"
               >
-                Submit
+                {isLoading ? "Loading" : "Submit"}
               </button>
             </div>
           </form>
