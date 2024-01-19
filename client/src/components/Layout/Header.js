@@ -53,7 +53,7 @@ export default function Header() {
                         ref={categoryBtn}
                         className="text-base text-black flex flex-nowrap gap-1 items-center focus:outline-none  focus-visible:text-orange hover:text-orange "
                       >
-                        Industries
+                        Categories
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -80,7 +80,7 @@ export default function Header() {
                         leave="transition duration-75 ease-out"
                         leaveFrom="transform scale-100 opacity-100"
                         leaveTo="transform scale-95 opacity-0"
-                        className="absolute top-5 right-0 -left-10 md:top-10"
+                        className="absolute top-5 right-0 -left-[19rem] md:top-10"
                       >
                         <Popover.Panel className="md:w-[28rem]  py-3 px-2 rounded-md  flex sm:grid-cols-2 grid-cols-1 gap-x-3 bg-white">
                           <div className="basis-60 flex flex-col gap-1  grow shrink   p-1 divide-y-1 divide-slate-200">
@@ -191,14 +191,6 @@ export default function Header() {
                   color="dark"
                   text="Login"
                   href="/login"
-                />
-              </li>
-              <li>
-                <TextNavAnchor
-                  size="small"
-                  color="dark"
-                  text="Cart (0)"
-                  href="/cart"
                 />
               </li>
             </ul>
