@@ -134,3 +134,7 @@
 .banner-height {
   height:calc(100vh - 100px)
 }
+
+.text-anchor:hover ,.text-navanchor:hover{
+  color: #4caf50  !important;
+}

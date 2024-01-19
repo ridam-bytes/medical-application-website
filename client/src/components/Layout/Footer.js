@@ -30,8 +30,8 @@ export default function Footer() {
           <div className="flex flex-col">
             <Anchor href="/">
               <img
-                src="/logo.svg"
-                className="h-10 md:h-12 xlg:h-12"
+                src="/logo.png"
+                className="h-10 md:h-16 lg:h-28"
                 alt="Innogent logo"
                 title="logo"
               />

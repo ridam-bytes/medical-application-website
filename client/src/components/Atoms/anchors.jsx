@@ -31,7 +31,7 @@ const TextNavAnchor = ({
       target={target}
       to={href}
       {...rest}
-    className={ navData =>  (navData.isActive ?"text-green":"text-black" )+ " outline-none focus-visible:outline-none focus-visible:underline underline-offset-4 hover:text-green transition-colors duration-150 ease-in-out"}
+    className={ navData =>  (navData.isActive ?"text-green":"text-black" )+ "  text-navanchor outline-none focus-visible:outline-none focus-visible:underline underline-offset-4 hover:text-green transition-colors duration-150 ease-in-out"}
     >
      {text}
     </NavLink>
@@ -55,7 +55,7 @@ function TextAnchor({
       to={href}
       {...rest}
       className={`${sizeClass} ${colorClass} ${className} text-opacity-70 hover:text-opacity-100 focus:outline-none 
-                  focus:underline decoration-from-font underline-offset-4 focus:text-opacity-100 transition-all`}
+                 text-anchor  focus:underline decoration-from-font underline-offset-4 focus:text-opacity-100 transition-all`}
     >
       {text}
     </Link>
