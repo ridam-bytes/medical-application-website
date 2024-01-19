@@ -40,10 +40,12 @@
   margin-right: 10px;
   margin-top: 4px;
 }
+
 .search-form input {
   border: none;
   border-radius: 0;
 }
+
 .search-form button {
   background-color: #000000;
   border-radius: 0;
@@ -59,9 +61,10 @@
 }
 
 .subscribe_n {
-  background-color: #4caf50;;
+  background-color: #4caf50;
+  ;
   text-align: center;
-  padding: 10px 0px ;
+  padding: 10px 0px;
 
   h2 {
     color: #fff;
@@ -125,10 +128,12 @@
   padding: 10px;
   margin-top: 10px;
 }
+
 .pnf-btn:hover {
   background-color: black;
   color: white;
 }
+
 /* ========================================= */
 /* =========contact us ========= */
 .contactus {
@@ -151,10 +156,12 @@
   font-size: 24px;
   text-transform: uppercase;
 }
+
 .cat-btn:hover {
   background-color: #434343;
   color: white;
 }
+
 /* ================
 ====dashboard
 =================== */
@@ -173,7 +180,7 @@
 .carousel {
   color: black;
   /* padding: 25px; */
-  margin-top:1%;
+  margin-top: 1%;
   width: 100vw;
   overflow-x: hidden;
   height: 40vh;
@@ -185,7 +192,7 @@
   padding-left: 10px;
   font-size: 18px;
 
-  @media (max-width: 600px){
+  @media (max-width: 600px) {
     width: auto;
     height: 44px;
   }
@@ -207,6 +214,7 @@
   height: 500px;
   margin: 40px 10px 5px 10px;
 }
+
 .carousel-wrapper {
   display: flex;
   transition: transform 0.5s ease-in-out;
@@ -214,4 +222,26 @@
 
 .banner {
   min-width: 100%;
+}
+
+.dots-container {
+  margin-top: 4px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.dot {
+  position: relative;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  border: 1px solid black;
+  margin: 0 2px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.dot.selected {
+  background-color: #333333;
 }

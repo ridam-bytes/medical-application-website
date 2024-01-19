@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 let currentIndex = 0;
-let carouselWrapper;
 let banner_count = 2;
 
 function updateCarousel() {
   const newTransformValue = -currentIndex * 100 + '%';
+  const carouselWrapper = document.querySelector('.carousel-wrapper');
+
   if (carouselWrapper) {
     carouselWrapper.style.transform = `translateX(${newTransformValue})`;
   }
@@ -17,36 +18,43 @@ function nextSlide() {
 }
 
 const Carousel = () => {
-  updateCarousel();
-  setInterval(nextSlide, 4000);
+  useEffect(() => {
+    const intervalId = setInterval(nextSlide, 4000);
+
+    // Cleanup the interval when the component is unmounted
+    return () => clearInterval(intervalId);
+  }, []); // Empty dependency array ensures that the effect runs only once on mount
+
   return (
-    <div class="carousel-container">
-      <div class="carousel-wrapper">
-        <div class="banner">
-        <img
+    <div className="carousel-container">
+      <div className="carousel-wrapper">
+        <div className="banner">
+          <img
             src="/images/contactus.jpeg"
             alt="contactus"
             style={{ width: "100%", height: "500px" }}
           />
         </div>
-        <div class="banner">
-        <img
+        <div className="banner">
+          <img
             src="/images/contactus.jpeg"
             alt="contactus"
-            style={{ width: "100%", height: "500px"}}
+            style={{ width: "100%", height: "500px" }}
           />
         </div>
       </div>
-      {/* <div class="dots-container">
+      <div className="dots-container">
+        {Array(banner_count).fill(null).map((_, index) => (
           <span
-            class={`dot ${index === currentIndex ? 'selected' : 'not-selected'}`}
-            on:click={() => {
+            className={`dot ${index === currentIndex ? 'selected' : 'not-selected'}`}
+            onClick={() => {
               currentIndex = index;
-              stopAutoSlide();
               updateCarousel();
             }}
-            ></span>
-      </div> */}
+            key={index}
+          ></span>
+        ))}
+      </div>
     </div>
   );
 };

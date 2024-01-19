@@ -4,10 +4,8 @@ export const StyledForm = styled.form`
   background-color: #f4f4f4;
   padding: 20px;
   border-radius: 25px;
-  margin-top: 100px;
-  margin-bottom: 10px;
-  margin-left: 20%;
-  margin-right: 20%;
+   margin-left: 20%;
+   margin-right: 20%;
 `
 
 export const StyledLabel = styled.label`

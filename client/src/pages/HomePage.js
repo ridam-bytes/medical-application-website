@@ -6,8 +6,8 @@ import Carousel from '../components/Carousel'
 function HomePage() {
   return (
     <Layout>
-       <Carousel/>
-       <ContactForm/>
+      <Carousel />
+      <ContactForm />
     </Layout>
   )
 }
