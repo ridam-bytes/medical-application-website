@@ -117,10 +117,19 @@ export default function Footer() {
                 <NavigationLink href="/privacy-policy" text="Privacy Policy" />
               </li>
               <li>
-                <NavigationLink href="/privacy-policy" text="Shipping Policy" />
+                <NavigationLink
+                  href="/shipping-policy"
+                  text="Shipping Policy"
+                />
               </li>
               <li>
-                <NavigationLink href="/privacy-policy" text="Return Policy" />
+                <NavigationLink href="/blogs" text="Blogs" />
+              </li>
+              <li>
+                <NavigationLink href="/faq" text="FAQ" />
+              </li>
+              <li>
+                <NavigationLink href="/soution-center" text="Solution Center" />
               </li>
             </ul>
           </div>
