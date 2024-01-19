@@ -2,11 +2,11 @@ import userModel from "../models/userModel.js";
 import { comparePassword, hashPassword } from "./../helpers/authHelper.js";
 import JWT from "jsonwebtoken";
 
-export const registerController = async(req,res) => {
-    try{
-        const { first_name, last_name, email, password, phone, address, answer } = req.body;
+export const registerController = async (req, res) => {
+    try {
+        const { first_name, last_name, email, password } = req.body;
         if (!first_name) {
-            return res.send({ error: "first name is Required" });
+            return res.send({ message: "first name is Required" });
         }
         if (!email) {
             return res.send({ message: "Email is Required" });
@@ -14,31 +14,19 @@ export const registerController = async(req,res) => {
         if (!password) {
             return res.send({ message: "Password is Required" });
         }
-        if (!phone) {
-            return res.send({ message: "Phone no is Required" });
-        }
-        if (!address) {
-            return res.send({ message: "Address is Required" });
-        }
-        if (!answer) {
-            return res.send({ message: "Answer is Required" });
-        }
         const exisitingUser = await userModel.findOne({ email });
         if (exisitingUser) {
-        return res.status(200).send({
-            success: false,
-            message: "Already Register please login",
-        });
+            return res.status(200).send({
+                success: false,
+                message: "Already Register please login",
+            });
         }
         const hashedPassword = await hashPassword(password);
         const user = await new userModel({
             first_name,
             last_name,
             email,
-            phone,
-            address,
             password: hashedPassword,
-            answer,
         }).save();
 
         res.status(201).send({
@@ -46,7 +34,7 @@ export const registerController = async(req,res) => {
             message: "User Register Successfully",
             user,
         });
-    } catch(error) {
+    } catch (error) {
         console.log(error);
         res.status(500).send({
             success: false,
@@ -56,10 +44,10 @@ export const registerController = async(req,res) => {
     }
 }
 
-export const loginController = async(req,res) => {
+export const loginController = async (req, res) => {
     try {
-        const {email, password} = req.body;
-        if(!email || !password) {
+        const { email, password } = req.body;
+        if (!email || !password) {
             return res.status(404).send({
                 success: false,
                 message: "Missing email or password",
@@ -95,7 +83,7 @@ export const loginController = async(req,res) => {
             // },
             token,
         });
-    } catch(error) {
+    } catch (error) {
         res.status(500).send({
             success: false,
             message: 'Error in Login',
@@ -106,10 +94,9 @@ export const loginController = async(req,res) => {
 
 export const testController = (req, res) => {
     try {
-      res.send("Protected Routes");
+        res.send("Protected Routes");
     } catch (error) {
-      console.log(error);
-      res.send({ error });
+        console.log(error);
+        res.send({ error });
     }
-  };
-  
+};

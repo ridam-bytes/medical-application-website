@@ -9,9 +9,6 @@ const Register = () => {
   const [last_name, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
-  const [answer, setAnswer] = useState("");
   const navigate = useNavigate();
 
   // form function
@@ -22,13 +19,11 @@ const Register = () => {
         first_name,
         last_name,
         email,
-        password,
-        phone,
-        address,
-        answer,
+        password
       });
+      console.log(res)
       if (res && res.data.success) {
-        toast.success(res.data && res.data.message);
+        toast.success(res.data.message);
         navigate("/login");
       } else {
         toast.error(res.data.message);
