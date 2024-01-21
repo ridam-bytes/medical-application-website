@@ -27,7 +27,7 @@ export const addUserQuery = async(req, res) => {
         });
 
     }
-    catch(e){
+    catch(error){
         res.status(500).send({
             success: false,
             message: 'Error in Registeration',
