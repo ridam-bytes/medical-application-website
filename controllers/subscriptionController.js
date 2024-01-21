@@ -6,12 +6,14 @@ export const subsribeController = async (req, res) => {
         if (email.length === 0) {
             return res.send({ message: "Please enter valid email" });
         }
-        console.log('hii')
         if (!(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email))) {
             return res.send({ message: "Please enter valid email" });
         }
 
-        await new subscribeModel({ email }).save();
+        const existingEmail = await subscribeModel.findOne({ email });
+        if (!existingEmail) {
+            await new subscribeModel({ email }).save();
+        }
         res.status(200).send({
             success: true,
             message: "Thank you for subscrbing us",
