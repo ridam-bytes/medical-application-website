@@ -44,7 +44,7 @@ export default function Banner() {
         <div className="absolute left-0 top-0 right-0 z-10 bottom-0  w-14 md:w-20 lg:w-24 grid place-content-center">
           <button
             type="button"
-            class="place-content-center cursor-pointer h-8 md:h-10 lg:h-12 w-8 md:w-10 lg:w-12 rounded-full  hover:bg-green hover:bg-opacity-30 backdrop-blur-sm border-[1px] carousel-prev-btn  border-solid border-white  border-opacity-10 stroke-white hover:stroke-green focus-visible:bg-green focus-visible:stroke-green outline-none transition-all grid "
+            className="place-content-center cursor-pointer h-8 md:h-10 lg:h-12 w-8 md:w-10 lg:w-12 rounded-full  hover:bg-green hover:bg-opacity-30 backdrop-blur-sm border-[1px] carousel-prev-btn  border-solid border-white  border-opacity-10 stroke-white hover:stroke-green focus-visible:bg-green focus-visible:stroke-green outline-none transition-all grid "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +52,7 @@ export default function Banner() {
               viewBox="0 0 24 24"
               stroke-width="3"
               stroke="inherit"
-              class="w-4 md:w-6 rotate-180"
+              className="w-4 md:w-6 rotate-180"
             >
               <path
                 stroke-linecap="round"
@@ -65,7 +65,7 @@ export default function Banner() {
         <div className="absolute left-auto top-0 right-0 z-10 bottom-0  w-14 md:w-20 lg:w-24 grid place-content-center">
           <button
             type="button"
-            class="place-content-center cursor-pointer h-8 md:h-10 lg:h-12 w-8 md:w-10 lg:w-12 rounded-full  hover:bg-green hover:bg-opacity-30 backdrop-blur-sm border-[1px] border-solid border-white  border-opacity-10 stroke-white hover:stroke-green carousel-next-btn focus-visible:bg-green focus-visible:stroke-green outline-none transition-all grid "
+            className="place-content-center cursor-pointer h-8 md:h-10 lg:h-12 w-8 md:w-10 lg:w-12 rounded-full  hover:bg-green hover:bg-opacity-30 backdrop-blur-sm border-[1px] border-solid border-white  border-opacity-10 stroke-white hover:stroke-green carousel-next-btn focus-visible:bg-green focus-visible:stroke-green outline-none transition-all grid "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +73,7 @@ export default function Banner() {
               viewBox="0 0 24 24"
               stroke-width="3"
               stroke="inherit"
-              class="w-4 md:w-5"
+              className="w-4 md:w-5"
             >
               <path
                 stroke-linecap="round"

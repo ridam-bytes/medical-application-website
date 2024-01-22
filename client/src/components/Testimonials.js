@@ -12,8 +12,8 @@ export default function Testimonials() {
         <h2 className="font-semibold md:mb-2 pb-2 leading-normal from-neutral-400 bg-gradient-to-br bg-clip-text text-transparent to-neutral-800 text-3xl md:text-4xl lg:text-5xl">
           Our work speaks for us
         </h2>
-        <div class="flex items-center gap-2  mt-2 justify-center max-w-[300px] mx-auto md:w-11/12 px-3 pb-3 md:pb-7 lg:pb-10">
-          <div class="flex-0">
+        <div className="flex items-center gap-2  mt-2 justify-center max-w-[300px] mx-auto md:w-11/12 px-3 pb-3 md:pb-7 lg:pb-10">
+          <div className="flex-0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="21"
@@ -40,10 +40,10 @@ export default function Testimonials() {
               </defs>
             </svg>
           </div>
-          <div class="flex-1">
+          <div className="flex-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-auto w-full object-contain"
+              className="h-auto w-full object-contain"
               viewBox="0 0 464 2"
               fill="none"
             >
@@ -67,7 +67,7 @@ export default function Testimonials() {
               </defs>
             </svg>
           </div>
-          <div class="flex-0">
+          <div className="flex-0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="21"

@@ -3,10 +3,12 @@ import { Anchor, TextNavAnchor } from "../Atoms/anchors";
 import MobileNavModal from "../MobileNavModal";
 import { useNavigate } from "react-router-dom";
 import { Popover, Transition as PopTransition } from "@headlessui/react";
+import { useAuthContext } from "../../context/auth";
 
 export default function Header() {
   const [isModalOpen, toggleState] = useReducer((s) => !s, false);
 
+  const { islogged, email, logout } = useAuthContext();
   useEffect(() => {
     if (isModalOpen) {
       document.body.style.overflow = "hidden";
@@ -15,6 +17,9 @@ export default function Header() {
     }
   }, [isModalOpen]);
 
+  const handleLogout = () => {
+    logout();
+  };
   const categoryBtn = useRef();
 
   const navigate = useNavigate();
@@ -177,22 +182,102 @@ export default function Header() {
                   )}
                 </Popover>
               </li>
-              <li>
-                <TextNavAnchor
-                  size="small"
-                  color="dark"
-                  text="Register"
-                  href="/register"
-                />
-              </li>
-              <li>
-                <TextNavAnchor
-                  size="small"
-                  color="dark"
-                  text="Login"
-                  href="/login"
-                />
-              </li>
+
+              {islogged && (
+                <Popover className="relative">
+                  {({ open }) => (
+                    <>
+                      <Popover.Button
+                        ref={categoryBtn}
+                        className="text-base text-black flex flex-nowrap gap-1 items-center focus:outline-none  focus-visible:text-orange hover:text-orange"
+                      >
+                        <img
+                          className="w-10 h-10 rounded-full"
+                          src="https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D"
+                          alt="Rounded avatar"
+                        />
+                        <span className="pl-1.5 pr-2">
+                          {" "}
+                          {String(email).slice(0, 8)}{" "}
+                          {String(email).length > 8 ? "..." : ""}
+                        </span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth="3.5"
+                          stroke="currentColor"
+                          className={` ${
+                            open ? "rotate-180" : ""
+                          } transition-all duration-300 mt-[2px] ease-in-out w-3 h-3`}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                          />
+                        </svg>
+                      </Popover.Button>
+
+                      <PopTransition
+                        show={open}
+                        enter="transition duration-100 ease-out"
+                        enterFrom="transform scale-95 opacity-0"
+                        enterTo="transform scale-100 opacity-100"
+                        leave="transition duration-75 ease-out"
+                        leaveFrom="transform scale-100 opacity-100"
+                        leaveTo="transform scale-95 opacity-0"
+                        className="absolute top-5 right-0 -left-0 md:top-12"
+                      >
+                        <Popover.Panel className="md:w-[12rem] px-2 border-[1px] border-solid border-neutral-300 py-1 rounded-md  flex gap-x-3 bg-white">
+                          <div className="basis-0 flex-1 flex flex-col gap-1  grow shrink   p-1 divide-y-1 divide-slate-200">
+                            <PopOption
+                              callback={() => popNavigation("cart", "category")}
+                              text="Cart"
+                            />
+                            <PopOption
+                              callback={() =>
+                                popNavigation("wishlist", "category")
+                              }
+                              text="Wishlist"
+                            />
+
+                            <button
+                              type="button"
+                              onClick={handleLogout}
+                              className=" py-2 mt-2 px-1  border-t-[1px] border-solid border-neutral-300 flex flex-nowrap items-center gap-1 group font-normal  outline-none focus:outline-none hover:text-green"
+                            >
+                              <span className="group-hover:text-green group-focus:text-green transition-colors duration-200 ease-in-out">
+                                Log Out
+                              </span>
+                            </button>
+                          </div>
+                        </Popover.Panel>
+                      </PopTransition>
+                    </>
+                  )}
+                </Popover>
+              )}
+              {!islogged && (
+                <>
+                  <li>
+                    <TextNavAnchor
+                      size="small"
+                      color="dark"
+                      text="Register"
+                      href="/register"
+                    />
+                  </li>
+                  <li>
+                    <TextNavAnchor
+                      size="small"
+                      color="dark"
+                      text="Login"
+                      href="/login"
+                    />
+                  </li>
+                </>
+              )}
             </ul>
             <button
               type="button"

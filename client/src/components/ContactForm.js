@@ -139,7 +139,7 @@ export default function Contact() {
               <button
                 disabled={isLoading}
                 type="submit"
-                class="master-btn disabled:opacity-50 text-white py-2 px-8 xl:px-10 xl:py-[10px] text-base md:text-lg font-medium rounded-md focus-visible:outline-green outline-transparent hover:outline-green transition-all duration-300 ease-default outline outline-[2px] outline-offset-2"
+                className="master-btn disabled:opacity-50 text-white py-2 px-8 xl:px-10 xl:py-[10px] text-base md:text-lg font-medium rounded-md focus-visible:outline-green outline-transparent hover:outline-green transition-all duration-300 ease-default outline outline-[2px] outline-offset-2"
               >
                 {isLoading ? "Loading" : "Submit"}
               </button>

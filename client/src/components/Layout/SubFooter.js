@@ -63,7 +63,7 @@ export default function SubFooter() {
             disabled={isLoading}
             onClick={handleSubmit}
             type="button"
-            class="master-btn disabled:opacity-50 text-white py-2 px-4 xl:px-7 text-base md:text-base font-medium rounded-md focus-visible:outline-green outline-transparent hover:outline-green transition-all duration-300 ease-default outline outline-[2px] outline-offset-2"
+            className="master-btn disabled:opacity-50 text-white py-2 px-4 xl:px-7 text-base md:text-base font-medium rounded-md focus-visible:outline-green outline-transparent hover:outline-green transition-all duration-300 ease-default outline outline-[2px] outline-offset-2"
           >
             {isLoading ? "Loading..." : "Subscribe"}
           </button>
