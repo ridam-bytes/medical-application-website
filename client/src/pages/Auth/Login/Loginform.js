@@ -66,9 +66,9 @@ export default function RegitserForm() {
           <form
             onSubmit={handleSubmit}
             noValidate
-            className="max-w-md  blade-bottom-margin-sm bg-white  mx-auto md:w-11/12 px-2 pt-10 pb-8 border-[1px] border-solid border-neutral-200 rounded-xl"
+            className="max-w-md login-form-wrapper blade-bottom-margin-sm mx-auto md:w-11/12  p-[1.5px] rounded-xl"
           >
-            <div className="md:grid-cols-1 gap-3 grid-cols-1 grid md:gap-6 md:px-4">
+            <div className="md:grid-cols-1 gap-3 grid-cols-1 grid md:gap-6 md:px-4 px-4 pt-10">
               <div className=" flex flex-col ">
                 <label className="mb-1 text-sm font-medium lg:text-base text-neutral-700">
                   Email*
@@ -124,7 +124,7 @@ export default function RegitserForm() {
               </div>
             </div>
 
-            <div className="w-full flex justify-end mt-4 md:mt-6 lg:mt-8  md:px-4">
+            <div className="w-full flex pb-8 px-4 justify-end mt-4 md:mt-6 lg:mt-8  md:px-4">
               <button
                 type="submit"
                 class="master-btn text-white py-2 px-8 xl:px-10 xl:py-[10px] text-base md:text-lg font-medium rounded-md focus-visible:outline-green outline-transparent hover:outline-green transition-all duration-300 ease-default outline outline-[2px] outline-offset-2"
