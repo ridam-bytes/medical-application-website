@@ -9,6 +9,7 @@ import { useAuthContext } from "../../../context/auth";
 
 export default function RegitserForm() {
   const [isLoading, toggleLoading] = useState(false);
+
   const initalFormState = {
     email: "",
     first_name: "",

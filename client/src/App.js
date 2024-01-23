@@ -6,6 +6,8 @@ import Policy from "./pages/Policy";
 import Pagenotfound from "./pages/Pagenotfound";
 import Register from "./pages/Auth/Register/page";
 import Login from "./pages/Auth/Login/page";
+import Products from "./pages/Products/page";
+import Cart from "./pages/cart/page";
 import "./App.css";
 import { AuthProvider } from "./context/auth";
 
@@ -26,6 +28,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/products/:category" element={<Products />} />
         <Route path="/policy" element={<Policy />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<Pagenotfound />} />
